@@ -58,14 +58,12 @@ const Selector = (props) => {
 
   //When the option is clicked, this function handles when a new is selected or unselected.
   const setOptionClick = (opt) => {
-    const optValue = opt.value
-    const optText = opt.text
     const isChecked = selectedItems.some(
-      (item) => item.value === optValue && item.text === optText,
+      (item) => item === opt,
     )
     let newSelected = isMulti ? [...selectedItems] : []
     if (isChecked) {
-      newSelected = newSelected.filter((obj) => obj.value !== optValue)
+      newSelected = newSelected.filter((obj) => obj !== opt)
     } else {
       newSelected.push(opt)
     }
@@ -135,7 +133,7 @@ const Selector = (props) => {
           {selectOptions.length &&
             selectOptions.map((opt, indx) => {
               const isChecked = selectedItems.some(
-                (item) => item.value === opt.value && item.text === opt.text,
+                (item) => item === opt,
               )
               return (
                 <div
